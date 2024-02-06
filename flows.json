@@ -1,0 +1,226 @@
+[
+    {
+        "id": "b79ebddbe0668112",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a02b7399c4c35416",
+        "type": "inject",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "261060ba2ff4dd43"
+            ]
+        ]
+    },
+    {
+        "id": "261060ba2ff4dd43",
+        "type": "http request",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?lat=-23.5325&lon=-46.7917&appid=a669c7581a465a7a7c6ca5cea61e378f&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "04daa0e47549025f"
+            ]
+        ]
+    },
+    {
+        "id": "3b6806d4c222d47c",
+        "type": "debug",
+        "z": "b79ebddbe0668112",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "04daa0e47549025f",
+        "type": "json",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 170,
+        "y": 440,
+        "wires": [
+            [
+                "83a967d931bf34d5",
+                "3154df25398f892d"
+            ]
+        ]
+    },
+    {
+        "id": "83a967d931bf34d5",
+        "type": "change",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 440,
+        "wires": [
+            [
+                "9b633caed2edb2db",
+                "3b6806d4c222d47c"
+            ]
+        ]
+    },
+    {
+        "id": "9b633caed2edb2db",
+        "type": "ui_gauge",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "group": "dd1d366f93f68ee8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "tempeatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3154df25398f892d",
+        "type": "change",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.temp_min",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "ce3716323c397d6e"
+            ]
+        ]
+    },
+    {
+        "id": "ce3716323c397d6e",
+        "type": "ui_gauge",
+        "z": "b79ebddbe0668112",
+        "name": "",
+        "group": "dd1d366f93f68ee8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "min",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 110,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "dd1d366f93f68ee8",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "a8a0ae1f20df6036",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a8a0ae1f20df6036",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
