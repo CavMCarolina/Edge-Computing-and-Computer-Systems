@@ -1,3 +1,0 @@
-README – Checkpoint 1 Edge Computing & Computer Systems:
-
-Esse projeto é o Checkpoint 1 da matéria Edge Computing & Computer Systems, nele foi utilizada a linguagem C++ para programar um Arduino de acordo com os fatores necessários para manter a qualidade do vinho. Sendo assim, ao estar dentro das condições ideais, o led verde é acionado, porém, se estiver no limite, o led amarelo ficará piscando e um alarme será emitido para demonstrar que está em estado de alerta, já no modo crítico, o led vermelho ficará ligado junto com o som de alarme.
