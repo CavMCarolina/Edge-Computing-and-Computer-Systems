@@ -1,9 +1,11 @@
+// Adicionando bibliotecas
 #include <ArduinoJson.h>
 #include "DHT.h"
 
-// DHT
+// variável para objeto Json
 const int tamanho = 5;
 
+// DHT
 #define DHTPIN  A1
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
@@ -16,6 +18,7 @@ int echo = 8;
 // LDR
 int ldr = A0;
 
+// Ler Ultrassônico
 long readUltrassonicDistance(int trigger, int echo){
   pinMode(trigger, OUTPUT);
   digitalWrite(trigger, LOW);
@@ -36,24 +39,30 @@ void setup() {
 }
 
 void loop() {
+    // Criando objeto Json
     StaticJsonDocument<tamanho> doc;
 
-    // Faz a leitura da temperatura  
+    // leitura da temperatura  
     float temp = dht.readTemperature();
-    // faz a leitura da humidade
+    // leitura da umidade
     float umi = dht.readHumidity();
 
-    cm = 0.01723 * readUltrassonicDistance(trigger, echo);
-
+    // leitura ldr
     int leitura = analogRead(ldr);
 
+    // Transformando distância em cm
+    cm = 0.01723 * readUltrassonicDistance(trigger, echo);
+
+    // Adicionando variáveis no objeto
     doc["umidade"] = umi;
     doc["temperatura"] = temp;
     doc["distance_cm"] = cm;
     doc["luminosidade"] = leitura;
 
+    // Printando tudo
     serializeJson(doc, Serial);
     Serial.println(); 
-
+    
+    // Delay de 4 segundos para printar novamente
     delay(4000);
 }
