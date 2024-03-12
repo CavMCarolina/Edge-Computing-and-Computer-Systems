@@ -23,15 +23,15 @@ void setup() {
 }
 
 void loop() {
-    cm = 0.01723 * readUltrassonicDistance(trigger, echo);
+  cm = 0.01723 * readUltrassonicDistance(trigger, echo);
 
-    // Criar um objeto JSON
-    StaticJsonDocument<200> doc;
-    doc["distance_cm"] = cm; // Adicionar a variável cm ao JSON
+  // Criar um objeto JSON
+  StaticJsonDocument<200> doc;
+  doc["distance_cm"] = cm; // Adicionar a variável cm ao JSON
 
-    // Serializar o objeto JSON para enviar pela porta serial
-    serializeJson(doc, Serial);
-    Serial.println(); // Adicionar uma quebra de linha para separar os dados
+  // Serializar o objeto JSON para enviar pela porta serial
+  serializeJson(doc, Serial);
+  Serial.println(); // Adicionar uma quebra de linha para separar os dados
 
-    delay(3000); 
+  delay(3000); 
 }
